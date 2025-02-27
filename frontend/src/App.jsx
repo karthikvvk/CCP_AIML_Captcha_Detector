@@ -1,32 +1,56 @@
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [mouseLog, setMouseLog] = useState([]);
+  const [interactionLog, setInteractionLog] = useState([]);
   const [buttons, setButtons] = useState([]);
 
   useEffect(() => {
-    // Generate 20 random button positions
-    const generatedButtons = Array.from({ length: 50 }, (_, index) => ({
+    // Generate 50 random button positions
+    const generatedButtons = Array.from({ length: 70 }, (_, index) => ({
       id: `button_${index + 1}`,
       name: `Button ${index + 1}`,
-      x: Math.floor(Math.random() * (window.innerWidth - 10)),
-      y: Math.floor(Math.random() * (window.innerHeight - 10)),
+      x: Math.floor(Math.random() * (window.innerWidth - 100)), // Adjusted for button width
+      y: Math.floor(Math.random() * (window.innerHeight - 60)), // Adjusted for button height
     }));
     setButtons(generatedButtons);
   }, []);
 
-  // Track mouse movement
+  // Track Mouse Movement
   useEffect(() => {
     const trackMouse = (e) => {
-      setMouseLog((prev) => [...prev, { x: e.clientX, y: e.clientY }]);
+      setInteractionLog((prev) => [
+        ...prev.slice(-199), // Keep only the last 200 interactions
+        { type: "Mouse Movement", x: e.clientX, y: e.clientY, time: Date.now() },
+      ]);
     };
     window.addEventListener("mousemove", trackMouse);
     return () => window.removeEventListener("mousemove", trackMouse);
   }, []);
 
-  // Save log as JSON file
+  // Track Key Presses
+  useEffect(() => {
+    const trackKeys = (e) => {
+      setInteractionLog((prev) => [
+        ...prev.slice(-199),
+        { type: "Key Press", key: e.key, code: e.code, time: Date.now() },
+      ]);
+    };
+    document.addEventListener("keydown", trackKeys);
+    return () => document.removeEventListener("keydown", trackKeys);
+  }, []);
+
+  // Track Button Clicks
+  const handleButtonClick = (buttonId) => {
+    setInteractionLog((prev) => [
+      ...prev.slice(-199),
+      { type: "Button Click", buttonId, time: Date.now() },
+    ]);
+    saveLog(buttonId);
+  };
+
+  // Save Log as JSON file
   const saveLog = (buttonId) => {
-    const jsonString = JSON.stringify(mouseLog, null, 2);
+    const jsonString = JSON.stringify(interactionLog, null, 2);
     const blob = new Blob([jsonString], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     
@@ -41,18 +65,21 @@ function App() {
 
   return (
     <div>
-      <h1>Mouse Tracking & Button Click</h1>
+      <h1>Interaction Tracking</h1>
+      <p>Move the mouse, press keys, or click buttons to log interactions.</p>
+
       {buttons.map((btn) => (
         <button
           key={btn.id}
-          onClick={() => saveLog(btn.id)}
+          onClick={() => handleButtonClick(btn.id)}
           style={{
             position: "fixed",
             left: btn.x,
             top: btn.y,
             width: "90px",
             height: "60px",
-            backgroundColor: "red",
+            backgroundColor: "green",
+            color: "white",
             border: "none",
             cursor: "pointer",
           }}
