@@ -1,0 +1,55 @@
+2025-03-21 13:09:32,254 - INFO - mouse_classifier - Model and scaler loaded successfully
+2025-03-21 13:09:32,255 - INFO - mouse_classifier - Starting 8 worker threads
+2025-03-21 13:09:32,255 - INFO - mouse_classifier - Worker 0 started
+2025-03-21 13:09:32,256 - INFO - mouse_classifier - Worker 1 started
+2025-03-21 13:09:32,256 - INFO - mouse_classifier - Worker 2 started
+2025-03-21 13:09:32,256 - INFO - mouse_classifier - Worker 3 started
+2025-03-21 13:09:32,257 - INFO - mouse_classifier - Worker 4 started
+2025-03-21 13:09:32,257 - INFO - mouse_classifier - Worker 5 started
+2025-03-21 13:09:32,258 - INFO - mouse_classifier - Worker 6 started
+2025-03-21 13:09:32,258 - INFO - mouse_classifier - Worker 7 started
+2025-03-21 13:09:32,270 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.10.1.89:5000
+2025-03-21 13:09:32,270 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2025-03-21 13:09:35,270 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:35] "OPTIONS /predict HTTP/1.1" 200 -
+2025-03-21 13:09:35,302 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:35] "OPTIONS /predict HTTP/1.1" 200 -
+2025-03-21 13:09:35,309 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:35] "[35m[1mPOST /predict HTTP/1.1[0m" 204 -
+2025-03-21 13:09:35,313 - ERROR - mouse_classifier - Worker 2 error processing data: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 173, in process_queue
+    features_dict = extract_features(mouse_data)
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 130, in extract_features
+    valid_idx = norms[:-1] > 0 & norms[1:] > 0
+                             ~~^~~~~~~~~~~
+TypeError: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-03-21 13:09:35,322 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:35] "[35m[1mPOST /predict HTTP/1.1[0m" 204 -
+2025-03-21 13:09:35,325 - ERROR - mouse_classifier - Worker 6 error processing data: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 173, in process_queue
+    features_dict = extract_features(mouse_data)
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 130, in extract_features
+    valid_idx = norms[:-1] > 0 & norms[1:] > 0
+                             ~~^~~~~~~~~~~
+TypeError: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-03-21 13:09:38,784 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:38] "[35m[1mPOST /predict HTTP/1.1[0m" 204 -
+2025-03-21 13:09:38,795 - ERROR - mouse_classifier - Worker 2 error processing data: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 173, in process_queue
+    features_dict = extract_features(mouse_data)
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 130, in extract_features
+    valid_idx = norms[:-1] > 0 & norms[1:] > 0
+                             ~~^~~~~~~~~~~
+TypeError: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-03-21 13:09:41,423 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:41] "GET /check HTTP/1.1" 200 -
+2025-03-21 13:09:43,260 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:43] "OPTIONS /predict HTTP/1.1" 200 -
+2025-03-21 13:09:43,268 - INFO - werkzeug - 127.0.0.1 - - [21/Mar/2025 13:09:43] "[35m[1mPOST /predict HTTP/1.1[0m" 204 -
+2025-03-21 13:09:43,270 - ERROR - mouse_classifier - Worker 2 error processing data: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 173, in process_queue
+    features_dict = extract_features(mouse_data)
+  File "/home/muruga/Desktop/ccp combine/server/server.py", line 130, in extract_features
+    valid_idx = norms[:-1] > 0 & norms[1:] > 0
+                             ~~^~~~~~~~~~~
+TypeError: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
